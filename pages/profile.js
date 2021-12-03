@@ -4,6 +4,7 @@ import { supabase } from "../api";
 
 function Profile(props) {
   const { user } = Auth.useUser();
+  console.log(user);
   if (user)
     return (
       <>

@@ -6,6 +6,21 @@ import { supabase } from "../api";
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(checkUser);
+    checkUser();
+    return () => {
+      authListener?.unsubscribe();
+    };
+  }, []);
+
+  const checkUser = () => {
+    const user = supabase.auth.user();
+    setUser(user);
+  };
+
   useEffect(() => {
     fetchPosts();
     const mySubscription = supabase
@@ -22,8 +37,9 @@ export default function Home() {
     setPosts(data);
     setLoading(false);
   }
-  if (loading) return <p className="text-2xl">Loading Posts ...</p>;
-  if (!posts.length) return <p className="text-2xl">Opps posts not found. </p>;
+
+  if (loading) return <p className="text-2xl">Loading ...</p>;
+  if (user && !posts.length) return <p className="text-2xl">No posts.</p>;
 
   return (
     <div>
@@ -31,7 +47,8 @@ export default function Home() {
         <title>Supablog</title>
       </Head>
 
-      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">Posts</h1>
+      {!user ? <h1>Please sign up or login</h1> : ""}
+
       {posts.map((post) => (
         <Link key={post.id} href={`/posts/${post.id}`}>
           <a className="block border-b border-gray-300	mt-8 pb-4">
