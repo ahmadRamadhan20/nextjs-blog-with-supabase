@@ -50,7 +50,9 @@ export default function CreatePost() {
         type="button"
         className="mb-4 bg-green-600 text-white font-semibold px-8 py-2 rounded-lg"
         onClick={createNewPost}
-      ></button>
+      >
+        Create
+      </button>
     </div>
   );
 }

@@ -22,8 +22,8 @@ export default function Home() {
     setPosts(data);
     setLoading(false);
   }
-  if (loading) return <p className="text-2xl">Loading ...</p>;
-  if (!posts.length) return <p className="text-2xl">No posts.</p>;
+  if (loading) return <p className="text-2xl">Loading Posts ...</p>;
+  if (!posts.length) return <p className="text-2xl">Opps posts not found. </p>;
 
   return (
     <div>
