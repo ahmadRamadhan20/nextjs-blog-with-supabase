@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }) {
   };
   return (
     <div>
-      <nav className="p-6 border-b border-gray-300">
+      <nav className="p-6 border-b border-gray-600">
         <Link href="/">
           <a className="m-6">Home</a>
         </Link>
