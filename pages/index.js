@@ -6,20 +6,6 @@ import { supabase } from "../api";
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(checkUser);
-    checkUser();
-    return () => {
-      authListener?.unsubscribe();
-    };
-  }, []);
-
-  const checkUser = () => {
-    const user = supabase.auth.user();
-    setUser(user);
-  };
 
   useEffect(() => {
     fetchPosts();
@@ -39,15 +25,15 @@ export default function Home() {
   }
 
   if (loading) return <p className="text-2xl">Loading ...</p>;
-  if (user && !posts.length) return <p className="text-2xl">No posts.</p>;
+  if (!posts.length) return <p className="text-2xl">No posts.</p>;
 
   return (
     <div>
       <Head>
-        <title>Supablog</title>
+        <title>Next js with Supabase</title>
       </Head>
 
-      {!user ? <h1>Please sign up or login</h1> : ""}
+      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">Posts</h1>
 
       {posts.map((post) => (
         <Link key={post.id} href={`/posts/${post.id}`}>

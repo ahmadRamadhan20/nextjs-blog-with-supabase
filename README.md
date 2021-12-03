@@ -13,3 +13,7 @@ user can delete post
 user can see post
 
 user can edit post
+
+not user can't delete post
+
+not user can't edit post
