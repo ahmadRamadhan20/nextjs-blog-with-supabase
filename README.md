@@ -4,6 +4,8 @@ user can sign up
 
 user can login
 
+user can logout
+
 user can create posts
 
 user can delete post
