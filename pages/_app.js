@@ -15,7 +15,6 @@ export default function MyApp({ Component, pageProps }) {
 
   const checkUser = () => {
     const user = supabase.auth.user();
-    console.log(user);
     setUser(user);
   };
   return (

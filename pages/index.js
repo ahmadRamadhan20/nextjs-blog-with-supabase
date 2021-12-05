@@ -12,7 +12,6 @@ export default function Home() {
     const mySubscription = supabase
       .from("posts")
       .on("*", () => {
-        console.log("something happened....");
         fetchPosts();
       })
       .subscribe();
